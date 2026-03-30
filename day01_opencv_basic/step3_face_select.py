@@ -1,6 +1,7 @@
 import cv2 as cv
 import numpy as np
 
+
 # my_id_card.png 읽기
 img = cv.imread('my_id_card.png')
 
@@ -19,7 +20,7 @@ drawing = False
 
 # 마우스 콜백 함수 정의
 def draw_rectangle(event, x, y, flags, param):
-    global ix, iy, drawing, img, img_orig
+    global ix, iy, drawing, img, img_orig, cropped
 
     # LBUTTONDOWN: 드래그 시작, 시작점(ix, iy) 저장
     if event == cv.EVENT_LBUTTONDOWN:
@@ -33,6 +34,11 @@ def draw_rectangle(event, x, y, flags, param):
             img = img_orig.copy()
             # 현재 위치까지 초록색 사각형 그리기 (두께 2)
             cv.rectangle(img, (ix, iy), (x, y), (0, 255, 0), 2)
+
+            x1, y1 = min(ix, x), min(iy, y)  # 드래그 방향 상관없이 정렬
+            x2, y2 = max(ix, x), max(iy, y)
+
+            cropped = img[y1:y2, x1:x2]  # y: 100~300, x: 200~400
 
     # LBUTTONUP: 드래그 끝
     elif event == cv.EVENT_LBUTTONUP:
@@ -60,6 +66,7 @@ while(1):
     # 's' → my_id_card_final.png로 저장 후 break
     if k == ord('s'):
         cv.imwrite('my_id_card_final.png', img)
+        cv.imwrite('my_id_card_final.png', cropped)
         print("최종 이미지가 저장되었습니다: my_id_card_final.png")
         break
     # 'q' → break
