@@ -23,6 +23,8 @@ eroded = cv.erode(inverted, kernel, iterations=1)
 dialed = cv.dilate(inverted, kernel, iterations=1)
 opened = cv.morphologyEx(inverted, cv.MORPH_OPEN, kernel)
 closed = cv.morphologyEx(inverted, cv.MORPH_CLOSE, kernel)
+gradient = cv.morphologyEx(inverted, cv.MORPH_GRADIENT, kernel)
+
 
 cv.imshow("Original", img)
 cv.imshow("Inverted", inverted)
@@ -30,6 +32,7 @@ cv.imshow("Edosion", eroded)
 cv.imshow("Dilation", dialed)
 cv.imshow("opening", opened)
 cv.imshow("closing", closed)
+cv.imshow("gradiant", gradient)
 
 cv.waitKey(0)
 cv.destroyAllWindows()
