@@ -21,10 +21,12 @@ kernel = cv.getStructuringElement(cv.MORPH_CROSS, (5,5))
 
 # 침식 : 흰색 영역 축소 
 eroded = cv.erode(inverted, kernel, iterations=1)
+dialed = cv.dilate(inverted, kernel, iterations=1)
 
 cv.imshow("Original", img)
 cv.imshow("Inverted", inverted)
 cv.imshow("Edosion", eroded)
+cv.imshow("Dilation", dialed)
 
 cv.waitKey(0)
 cv.destroyAllWindows()
