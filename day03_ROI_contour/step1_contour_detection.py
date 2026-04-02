@@ -3,7 +3,7 @@ import numpy as np
 
 # 웹캠 연결
 #cap = cv.VideoCapture(0)
-cap = cv.VideoCapture(1)
+cap = cv.VideoCapture(0)
 if not cap.isOpened():
     print("웹캠을 열 수 없습니다")
     exit()
