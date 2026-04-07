@@ -1,7 +1,7 @@
 import urllib.request
 import os
 
-def get_sample(filename, repo='opencv'):
+def get_sample(filename, repo='insightbook'):
     """부교 또는 OpenCV 공식 샘플 이미지 자동 다운로드
     
     Args:
