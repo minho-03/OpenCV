@@ -31,7 +31,6 @@ kernel = cv.getStructuringElement(cv.MORPH_ELLIPSE, (5, 5))
 is_door_open = False
 prev_frame_time = 0
 
-
 extra_colors = {
     'Yellow': (np.array([20, 100, 100]), np.array([30, 255, 255]))
 }
@@ -82,13 +81,12 @@ while True:
     if detected_color is not None:
         if not is_door_open:
             reaction_time = (time.time() - process_start_time) * 1000
-            print(f"[{detected_color}] 감지됨 (반응속도: {reaction_time:.1f}ms)")
             if arduino: arduino.write(b'O')
             is_door_open = True
             
-        status_text = f"DETECTED - open ({detected_color})"
+        status_text = f"DETECTED - open ({detected_color}, Area: {max_area}px)"
         cv.rectangle(frame, (0, roi_startY), (width, height), (0, 255, 0), 2)
-        cv.putText(frame, status_text, (10, 70), cv.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2, cv.LINE_AA)
+        cv.putText(frame, status_text, (10, 70), cv.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2, cv.LINE_AA)
         
     else:
         if is_door_open:

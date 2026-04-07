@@ -53,7 +53,6 @@ while True:
         status_text = "NOT DETECTED - closed"
         cv.rectangle(frame, (0, roi_startY), (width, height), (0, 0, 255), 2)
         cv.putText(frame, status_text, (10, 40), cv.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 3, cv.LINE_AA)
-    # =========================================
         
     cv.imshow('Frame', frame)
     cv.imshow('Cleaned Mask', mask_cleaned)
