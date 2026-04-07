@@ -7,9 +7,9 @@ from sample_download import get_sample
 
 # 공식 샘플 이미지 또는 자신의 이미지 사용
 
-img1 = cv.imread(get_sample('box.png'), cv.IMREAD_GRAYSCALE)
+img1 = cv.imread('capture.JPG', cv.IMREAD_GRAYSCALE)
 
-img2 = cv.imread(get_sample('box_in_scene.png'), cv.IMREAD_GRAYSCALE)
+img2 = cv.imread('IMG_7429.jpeg', cv.IMREAD_GRAYSCALE)
 
 if img1 is None or img2 is None:
 
@@ -161,33 +161,22 @@ if len(good_matches) >= MIN_MATCH_COUNT:
         # 2) cv.polylines()로 변환된 사각형 그리기 (파란색, 두께 3)
         cv.polylines(result_img, [np.int32(dst)], True, (255, 0, 0), 3, cv.LINE_AA)
         # 3) matplotlib으로 표시
-        plt.figure(figsize=(10, 8))
-        plt.imshow(cv.cvtColor(result_img, cv.COLOR_BGR2RGB))
-        plt.title('Detected Object with Homography')
-        plt.axis('off')
-        plt.tight_layout()
-        plt.show()
-        
-
-        result_img = img2.copy()
 
         # TODO: polylines 코드 작성
-
+        plt.figure(figsize=(15, 6))
         
+        plt.subplot(1, 2, 1)
+        plt.imshow(img1, cmap='gray')
+        plt.title('Template (capture.JPG)')
+        plt.axis('off')
 
-        plt.figure(figsize=(10, 8))
-
+        plt.subplot(1, 2, 2)
         plt.imshow(cv.cvtColor(result_img, cv.COLOR_BGR2RGB))
-
-        plt.title('Detected Object with Homography')
-
+        plt.title('Detected Object (IMG_7429.jpeg)')
         plt.axis('off')
 
         plt.tight_layout()
-
         plt.show()
-
-        
 
         # ========== Step 3: 매칭 시각화 (inlier만) ==========
 
