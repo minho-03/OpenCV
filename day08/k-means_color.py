@@ -10,6 +10,14 @@ data = img.reshape((-1,3)).astype(np.float32)
 criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 10, 1.0)
 # 평균 클러스터링 적용 ---④
 ret,label,center=cv2.kmeans(data,K,None,criteria,10,cv2.KMEANS_RANDOM_CENTERS)
+print("\n클러스터별 픽셀 개수:")
+
+for i in range(K):
+
+    count = np.sum(label == i)
+
+    print(f"클러스터 {i}: {count:,}개 픽셀")
+
 # 중심 값을 정수형으로 변환 ---⑤
 center = np.uint8(center)
 print(center)
